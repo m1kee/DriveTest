@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e57ec35783d146cd8e089b302d611c11" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="yggdrasilModel.alternativa" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="yggdrasilModel.imagen" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="yggdrasilModel.pregunta" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="yggdrasilModel.tipo_pregunta" Width="1.5" PointX="0.75" PointY="2.625" />
+        <AssociationConnector Association="yggdrasilModel.FK__alternati__id_pr__32E0915F" />
+        <AssociationConnector Association="yggdrasilModel.FK__imagen__id_pregu__35BCFE0A" />
+        <AssociationConnector Association="yggdrasilModel.FK__pregunta__id_tip__300424B4" />
+        <EntityTypeShape EntityType="yggdrasilModel.tipo_usuario" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="yggdrasilModel.usuario" Width="1.5" PointX="3" PointY="7" />
+        <AssociationConnector Association="yggdrasilModel.FK__usuario__tipo_us__0880433F" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

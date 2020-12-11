@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="yggdrasilModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alternativa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pregunta" Type="int" />
+          <Property Name="descripcion_alternativa" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="es_correcta" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imagen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pregunta" Type="int" />
+          <Property Name="nombre_imagen" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="formato" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pregunta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_pregunta" Type="int" />
+          <Property Name="descripcion_pregunta" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="comentario" Type="varchar" MaxLength="500" />
+          <Property Name="alternativas_aleatorias" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_pregunta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion_tipo_pregunta" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="primer_nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="segundo_nombre" Type="varchar" MaxLength="25" />
+          <Property Name="primer_apellido" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="segundo_apellido" Type="varchar" MaxLength="25" />
+          <Property Name="correo" Type="varchar" MaxLength="500" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="tipo_usuario" Type="int" />
+        </EntityType>
+        <Association Name="FK__alternati__id_pr__7FEAFD3E">
+          <End Role="pregunta" Type="Self.pregunta" Multiplicity="0..1" />
+          <End Role="alternativa" Type="Self.alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="alternativa">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__imagen__id_pregu__02C769E9">
+          <End Role="pregunta" Type="Self.pregunta" Multiplicity="0..1" />
+          <End Role="imagen" Type="Self.imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="imagen">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pregunta__id_tip__7D0E9093">
+          <End Role="tipo_pregunta" Type="Self.tipo_pregunta" Multiplicity="0..1" />
+          <End Role="pregunta" Type="Self.pregunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pregunta">
+              <PropertyRef Name="id_tipo_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__tipo_us__0880433F">
+          <End Role="tipo_usuario" Type="Self.tipo_usuario" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="yggdrasilModelStoreContainer">
+          <EntitySet Name="alternativa" EntityType="Self.alternativa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imagen" EntityType="Self.imagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pregunta" EntityType="Self.pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_pregunta" EntityType="Self.tipo_pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_usuario" EntityType="Self.tipo_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__alternati__id_pr__7FEAFD3E" Association="Self.FK__alternati__id_pr__7FEAFD3E">
+            <End Role="pregunta" EntitySet="pregunta" />
+            <End Role="alternativa" EntitySet="alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__imagen__id_pregu__02C769E9" Association="Self.FK__imagen__id_pregu__02C769E9">
+            <End Role="pregunta" EntitySet="pregunta" />
+            <End Role="imagen" EntitySet="imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pregunta__id_tip__7D0E9093" Association="Self.FK__pregunta__id_tip__7D0E9093">
+            <End Role="tipo_pregunta" EntitySet="tipo_pregunta" />
+            <End Role="pregunta" EntitySet="pregunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__tipo_us__0880433F" Association="Self.FK__usuario__tipo_us__0880433F">
+            <End Role="tipo_usuario" EntitySet="tipo_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="yggdrasilModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="yggdrasilEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alternativa" EntityType="yggdrasilModel.alternativa" />
+          <EntitySet Name="imagen" EntityType="yggdrasilModel.imagen" />
+          <EntitySet Name="pregunta" EntityType="yggdrasilModel.pregunta" />
+          <EntitySet Name="tipo_pregunta" EntityType="yggdrasilModel.tipo_pregunta" />
+          <AssociationSet Name="FK__alternati__id_pr__32E0915F" Association="yggdrasilModel.FK__alternati__id_pr__32E0915F">
+            <End Role="pregunta" EntitySet="pregunta" />
+            <End Role="alternativa" EntitySet="alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__imagen__id_pregu__35BCFE0A" Association="yggdrasilModel.FK__imagen__id_pregu__35BCFE0A">
+            <End Role="pregunta" EntitySet="pregunta" />
+            <End Role="imagen" EntitySet="imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pregunta__id_tip__300424B4" Association="yggdrasilModel.FK__pregunta__id_tip__300424B4">
+            <End Role="tipo_pregunta" EntitySet="tipo_pregunta" />
+            <End Role="pregunta" EntitySet="pregunta" />
+          </AssociationSet>
+          <EntitySet Name="tipo_usuario" EntityType="yggdrasilModel.tipo_usuario" />
+          <EntitySet Name="usuario" EntityType="yggdrasilModel.usuario" />
+          <AssociationSet Name="FK__usuario__tipo_us__0880433F" Association="yggdrasilModel.FK__usuario__tipo_us__0880433F">
+            <End Role="tipo_usuario" EntitySet="tipo_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="alternativa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pregunta" Type="Int32" />
+          <Property Name="descripcion_alternativa" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="es_correcta" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="pregunta" Relationship="yggdrasilModel.FK__alternati__id_pr__32E0915F" FromRole="alternativa" ToRole="pregunta" />
+        </EntityType>
+        <EntityType Name="imagen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pregunta" Type="Int32" />
+          <Property Name="nombre_imagen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="formato" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pregunta" Relationship="yggdrasilModel.FK__imagen__id_pregu__35BCFE0A" FromRole="imagen" ToRole="pregunta" />
+        </EntityType>
+        <EntityType Name="pregunta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_pregunta" Type="Int32" />
+          <Property Name="descripcion_pregunta" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alternativa" Relationship="yggdrasilModel.FK__alternati__id_pr__32E0915F" FromRole="pregunta" ToRole="alternativa" />
+          <NavigationProperty Name="imagen" Relationship="yggdrasilModel.FK__imagen__id_pregu__35BCFE0A" FromRole="pregunta" ToRole="imagen" />
+          <NavigationProperty Name="tipo_pregunta" Relationship="yggdrasilModel.FK__pregunta__id_tip__300424B4" FromRole="pregunta" ToRole="tipo_pregunta" />
+          <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="alternativas_aleatorias" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_pregunta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion_tipo_pregunta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pregunta" Relationship="yggdrasilModel.FK__pregunta__id_tip__300424B4" FromRole="tipo_pregunta" ToRole="pregunta" />
+        </EntityType>
+        <Association Name="FK__alternati__id_pr__32E0915F">
+          <End Type="yggdrasilModel.pregunta" Role="pregunta" Multiplicity="0..1" />
+          <End Type="yggdrasilModel.alternativa" Role="alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="alternativa">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__imagen__id_pregu__35BCFE0A">
+          <End Type="yggdrasilModel.pregunta" Role="pregunta" Multiplicity="0..1" />
+          <End Type="yggdrasilModel.imagen" Role="imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="imagen">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pregunta__id_tip__300424B4">
+          <End Type="yggdrasilModel.tipo_pregunta" Role="tipo_pregunta" Multiplicity="0..1" />
+          <End Type="yggdrasilModel.pregunta" Role="pregunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pregunta">
+              <PropertyRef Name="id_tipo_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tipo_usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="yggdrasilModel.FK__usuario__tipo_us__0880433F" FromRole="tipo_usuario" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="primer_nombre" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="segundo_nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="primer_apellido" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="segundo_apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_usuario" Type="Int32" />
+          <NavigationProperty Name="tipo_usuario1" Relationship="yggdrasilModel.FK__usuario__tipo_us__0880433F" FromRole="usuario" ToRole="tipo_usuario" />
+        </EntityType>
+        <Association Name="FK__usuario__tipo_us__0880433F">
+          <End Type="yggdrasilModel.tipo_usuario" Role="tipo_usuario" Multiplicity="0..1" />
+          <End Type="yggdrasilModel.usuario" Role="usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="yggdrasilModelStoreContainer" CdmEntityContainer="yggdrasilEntities">
+          <EntitySetMapping Name="alternativa">
+            <EntityTypeMapping TypeName="yggdrasilModel.alternativa">
+              <MappingFragment StoreEntitySet="alternativa">
+                <ScalarProperty Name="es_correcta" ColumnName="es_correcta" />
+                <ScalarProperty Name="descripcion_alternativa" ColumnName="descripcion_alternativa" />
+                <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imagen">
+            <EntityTypeMapping TypeName="yggdrasilModel.imagen">
+              <MappingFragment StoreEntitySet="imagen">
+                <ScalarProperty Name="formato" ColumnName="formato" />
+                <ScalarProperty Name="nombre_imagen" ColumnName="nombre_imagen" />
+                <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pregunta">
+            <EntityTypeMapping TypeName="yggdrasilModel.pregunta">
+              <MappingFragment StoreEntitySet="pregunta">
+                <ScalarProperty Name="alternativas_aleatorias" ColumnName="alternativas_aleatorias" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="descripcion_pregunta" ColumnName="descripcion_pregunta" />
+                <ScalarProperty Name="id_tipo_pregunta" ColumnName="id_tipo_pregunta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_pregunta">
+            <EntityTypeMapping TypeName="yggdrasilModel.tipo_pregunta">
+              <MappingFragment StoreEntitySet="tipo_pregunta">
+                <ScalarProperty Name="descripcion_tipo_pregunta" ColumnName="descripcion_tipo_pregunta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_usuario">
+            <EntityTypeMapping TypeName="yggdrasilModel.tipo_usuario">
+              <MappingFragment StoreEntitySet="tipo_usuario">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="yggdrasilModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+                <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+                <ScalarProperty Name="segundo_nombre" ColumnName="segundo_nombre" />
+                <ScalarProperty Name="primer_nombre" ColumnName="primer_nombre" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Drive Test</h1>
+    <p class="lead">Drive Test es un sistema con el cual puedes realizar el test de conducir.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Realizar Test</h2>
+        <p>
+            Haz click en el siguiente link para realizar el test de conducir.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Test", "Home")">Ir al Test &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Iniciar Sesión</h2>
+        <p>Podrás ver tu avance respecto a tus pruebas, estadísticas y mucho más.</p>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="txtRut" class="col-lg-3 control-label">Rut:</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" id="txtRut"
+                           placeholder="Ingrese su Rut" maxlength="9">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtPassword" class="col-lg-3 control-label">Contraseña:</label>
+                <div class="col-lg-9">
+                    <input type="password" class="form-control" id="txtPassword"
+                           placeholder="Contraseña" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group" style="display: none;">
+                <div class="col-lg-offset-3 col-lg-9">
+                    <span class="label label-danger" id="lblMensajeError"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> No cerrar sesión
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-9">
+                    <button type="button" class="btn btn-success" id="btnIniciarSesion">Entrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Home/home.js"></script>
+}

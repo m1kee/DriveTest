@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveTest.WEB", "DriveTest.WEB\DriveTest.WEB.csproj", "{E4DD7DC1-0119-49BC-B1CB-CF6F6BC20E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveTest.DAL", "DriveTest.DAL\DriveTest.DAL.csproj", "{03C5841D-5DF8-4315-87F6-542AD6B6AC92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Init Scripts", "Init Scripts", "{C67009F2-0A31-4CAF-8E52-A2D72E455B1D}"
+	ProjectSection(SolutionItems) = preProject
+		BDScripts\CreacionTablas.sql = BDScripts\CreacionTablas.sql
+		BDScripts\Inserts.sql = BDScripts\Inserts.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4DD7DC1-0119-49BC-B1CB-CF6F6BC20E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DD7DC1-0119-49BC-B1CB-CF6F6BC20E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DD7DC1-0119-49BC-B1CB-CF6F6BC20E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DD7DC1-0119-49BC-B1CB-CF6F6BC20E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C5841D-5DF8-4315-87F6-542AD6B6AC92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C5841D-5DF8-4315-87F6-542AD6B6AC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C5841D-5DF8-4315-87F6-542AD6B6AC92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C5841D-5DF8-4315-87F6-542AD6B6AC92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://shaauro.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DriveTest.DAL\\DriveTest.DAL.csproj
+		SccProjectName1 = DriveTest.DAL
+		SccLocalPath1 = DriveTest.DAL
+		SccProjectUniqueName2 = DriveTest.WEB\\DriveTest.WEB.csproj
+		SccProjectName2 = DriveTest.WEB
+		SccLocalPath2 = DriveTest.WEB
+	EndGlobalSection
+EndGlobal
